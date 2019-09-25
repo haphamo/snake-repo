@@ -4,7 +4,7 @@ const net = require('net');
 
 const connect = function() {
   const conn = net.createConnection({ 
-    host: '172.46.2.204',
+    host: 'localhost',
     port: 50541
     
   });
@@ -14,12 +14,21 @@ const connect = function() {
 
   conn.on('connect', () => {
     conn.write('Name: HAA');
+    //setInterval(function(){ alert("Hello"); }, 3000);
+    setInterval (() => conn.write ("Move: up"), 100);
+    setInterval (() => conn.write ("Move: right"), 200);
+    setInterval (() => conn.write ("Move: left"), 250);
+
   });
+
+
   conn.setEncoding('utf8'); 
   conn.on('data', (data) => {
     console.log('Message from server: ', data)
   });
 }
+
+
 
 module.exports = {
   connect
